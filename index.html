@@ -1,10 +1,4 @@
-<tool_call>                                       
-  <function=Write>                                                                  
-  <parameter=file_path>                                                             
-  ~/dtweb/web.html                                 
-  </parameter>                                                                      
-  <parameter=content>                                                               
-  <!DOCTYPE html>                                                                   
+<!DOCTYPE html>                                                                   
   <html lang="zh-CN">                                                               
   <head>                                                                            
       <meta charset="UTF-8">                                                        
@@ -14,7 +8,7 @@
           * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'PingFang 
   SC', 'Microsoft YaHei', sans-serif; scroll-behavior: smooth; }                    
           body { background-color: #f4f6f9; color: #333; line-height: 1.6;          
-  padding-right: 90px; }                                                            
+  }                                                            
           /* 顶部导航 */                                                            
           header { background-color: #0f172a; position: sticky; top: 0; z-index:    
   1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }                                   
@@ -124,7 +118,14 @@
   cursor: pointer; }                                                                
           .logout-link:hover { text-decoration: underline; }                        
           /* 欢迎大屏 */                                                            
-          .hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);    
+                    /* 顶部电梯楼层导航 */
+          .top-elevator-nav { display: flex; align-items: center; gap: 6px; background: #1a1a2e; padding: 6px 12px; border-radius: 10px; border: 2px solid #333; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+          .top-elevator-btn { width: 36px; height: 36px; border-radius: 50%; border: 2px solid #666; background: radial-gradient(circle, #444 0%, #222 100%); color: #aaa; font-weight: bold; font-size: 12px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+          .top-elevator-btn:hover { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 8px #00d2ff; }
+          .top-elevator-btn.active { color: #fff; border-color: #fff; background: radial-gradient(circle, #fff 0%, #aaa 100%); box-shadow: 0 0 10px #fff, 0 0 20px #38bdf8; animation: top-btn-pulse 1.2s ease-in-out infinite alternate; }
+          @keyframes top-btn-pulse { from { box-shadow: 0 0 8px #fff, 0 0 16px #fff, 0 0 24px #38bdf8; } to { box-shadow: 0 0 12px #fff, 0 0 24px #fff, 0 0 35px #38bdf8; } }
+          .top-elevator-screen { background-color: #000; color: #ff3b30; font-family: monospace; font-size: 14px; padding: 5px 10px; border-radius: 6px; min-width: 64px; text-align: center; border: 2px solid #333; text-shadow: 0 0 6px #ff3b30; margin-left: 4px; }
+.hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);    
   color: white; text-align: center; padding: 80px 20px; }                           
           .hero h1 { font-size: 36px; margin-bottom: 15px; letter-spacing: 2px; }   
           .hero p { font-size: 16px; opacity: 0.8; max-width: 600px; margin: 0 auto;
@@ -253,6 +254,19 @@
       <header>                                                                      
           <div class="nav-container">                                               
               <div class="logo">🛗 AI智能电梯服务</div>                             
+                            <nav class="top-elevator-nav" id="topElevatorNav">
+                  <a href="#floor0" class="top-elevator-btn" data-floor="0">0F</a>
+                  <a href="#floor1" class="top-elevator-btn" data-floor="1">1F</a>
+                  <a href="#floor2" class="top-elevator-btn" data-floor="2">2F</a>
+                  <a href="#floor3" class="top-elevator-btn" data-floor="3">3F</a>
+                  <a href="#floor4" class="top-elevator-btn" data-floor="4">4F</a>
+                  <a href="#floor5" class="top-elevator-btn" data-floor="5">5F</a>
+                  <a href="#floor6" class="top-elevator-btn" data-floor="6">6F</a>
+                  <a href="#floor7" class="top-elevator-btn" data-floor="7">7F</a>
+                  <a href="#floor8" class="top-elevator-btn" data-floor="8">8F</a>
+                  <a href="#floor9" class="top-elevator-btn" data-floor="9">9F</a>
+                  <div class="top-elevator-screen" id="topElevatorScreen">▲ 🗛</div>
+              </nav>
               <button id="loginBtn" class="login-btn">登录 / 注册</button>          
               <div id="userDisplay" class="user-display" style="display:none;">     
                   <span id="userWelcome"></span>                                    
@@ -264,29 +278,14 @@
   <!-- 欢迎大屏 -->                                                                 
   <section class="hero">                                                            
       <h1>欢迎来到 AI智能电梯服务</h1>                                              
-      <p>点击右侧"电梯按键面板"可快速跳转至对应业务楼层，查报价、找队伍、看案例一网 
+      <p>点击顶部"电梯楼层导航"可快速跳转至对应业务楼层，查报价、找队伍、看案例一网 
   打尽。</p>                                                                        
   </section>                                                                        
                                                                                     
-  <!-- 右侧电梯模拟控制面板（1F在最下，9F在最上） -->                               
-  <div class="elevator-panel">                                                      
-      <a href="#floor9" class="elevator-btn" data-floor="9">9F</a>                  
-      <a href="#floor8" class="elevator-btn" data-floor="8">8F</a>                  
-      <a href="#floor7" class="elevator-btn" data-floor="7">7F</a>                  
-      <a href="#floor6" class="elevator-btn" data-floor="6">6F</a>                  
-      <a href="#floor5" class="elevator-btn" data-floor="5">5F</a>                  
-      <a href="#floor4" class="elevator-btn" data-floor="4">4F</a>                  
-      <a href="#floor3" class="elevator-btn" data-floor="3">3F</a>                  
-      <a href="#floor2" class="elevator-btn" data-floor="2">2F</a>                  
-      <a href="#floor1" class="elevator-btn" data-floor="1">1F</a>                  
-      <a href="#floor0" class="elevator-btn" data-floor="0">0F</a>                  
-      <div class="elevator-screen">▲ 🛗</div>                                       
-  </div>                                                                            
+  <!-- 右侧电梯模拟控制面板（1F在最下，9F在最上） -->>                                                                            
                                                                                     
   <!-- 楼层到达提示 -->                                                             
-  <div class="elevator-notify" id="elevatorNotify">                                 
-      <span class="floor-text" id="notifyFloorText"></span> 楼层到了                
-  </div>                                                                            
+                                                                              
                                                                                     
   <!-- 登录/注册弹窗 -->                                                            
   <div class="auth-modal-overlay" id="authModal">                                   
@@ -398,115 +397,59 @@
   <main>                                                                            
       <!-- 0楼：客户求购/咨询 -->                                                   
       <section class="floor-section" id="floor0">                                   
-          <div class="floor-badge">0 楼</div>                                       
-          <h2 class="floor-title">客户求购与咨询区                                  
-  <span>（发布需求/快速匹配）</span> <a href="floor0-more.html" class="more-link"   
-  target="_blank">更多</a></h2>                                                     
-          <div class="grid-3">                                                      
-              <div class="item-card">                                               
-                  <h4>📋 求购发布表单</h4>                                          
-                  <form onsubmit="handleSubmit(event,                               
-  '求购信息已提交！我们将尽快为您匹配供应商。')">                                   
-                      <div class="form-group">                                      
-                          <label>需求类型</label>                                   
-                          <select required>                                         
-                              <option value="">请选择</option>                      
-                              <option>新梯采购</option>                             
-                              <option>电梯安装</option>                             
-                              <option>维保服务</option>                             
-                              <option>配件采购</option>                             
-                              <option>电梯改造</option>                             
-                              <option>拆梯回收</option>                             
-                              <option>二手配件</option>                             
-                              <option>其他</option>                                 
-                          </select>                                                 
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>品牌/型号</label>                                  
-                          <input type="text" placeholder="如：三菱GPS-III" required>
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>数量</label>                                       
-                          <input type="number" placeholder="1" min="1">             
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>预算范围</label>                                   
-                          <input type="text" placeholder="如：10-20万">             
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>联系方式</label>                                   
-                          <input type="text" placeholder="手机号/微信号/邮箱"       
-  required>                                                                         
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>备注说明</label>                                   
-                          <textarea placeholder="请描述您的具体需求..."></textarea> 
-                      </div>                                                        
-                      <button type="submit" class="submit-btn">提交求购需求</button>
-                  </form>                                                           
-              </div>                                                                
-              <div class="item-card">                                               
-                  <h4>💬 在线咨询</h4>                                              
-                  <form onsubmit="handleSubmit(event,                               
-  '咨询信息已提交！客服将在30分钟内联系您。')">                                     
-                      <div class="form-group">                                      
-                          <label>咨询主题</label>                                   
-                          <select required>                                         
-                              <option value="">请选择</option>                      
-                              <option>产品咨询</option>                             
-                              <option>价格咨询</option>                             
-                              <option>技术咨询</option>                             
-                              <option>售后咨询</option>                             
-                              <option>合作咨询</option>                             
-                          </select>                                                 
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>联系人</label>                                     
-                          <input type="text" placeholder="您的姓名" required>       
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>联系电话</label>                                   
-                          <input type="tel" placeholder="您的手机号" required>      
-                      </div>                                                        
-                      <div class="form-group">                                      
-                          <label>咨询内容</label>                                   
-                          <textarea placeholder="请详细描述您的问题..."             
-  required></textarea>                                                              
-                      </div>                                                        
-                      <button type="submit" class="submit-btn">提交咨询</button>    
-                  </form>                                                           
-              </div>                                                                
-              <div class="item-card">                                               
-                  <h4>📢 最新求购信息</h4>                                          
-                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
-  margin-bottom:10px;">                                                             
-                      <p style="font-size:14px; font-weight:bold;                   
-  color:#1a2a3a;">求购：日立无机房客梯 3台</p>                                      
-                      <p style="font-size:13px; color:#666;">预算：30-40万 |        
-  区域：江苏南京 | 发布时间：2026-03-18</p>                                         
-                  </div>                                                            
-                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
-  margin-bottom:10px;">                                                             
-                      <p style="font-size:14px; font-weight:bold;                   
-  color:#1a2a3a;">求购：6层站门机控制器批量</p>                                     
-                      <p style="font-size:13px; color:#666;">预算：1-2万 |          
-  区域：浙江杭州 | 发布时间：2026-03-17</p>                                         
-                  </div>                                                            
-                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
-  margin-bottom:10px;">                                                             
-                      <p style="font-size:14px; font-weight:bold;                   
-  color:#1a2a3a;">求购：观光电梯钢结构井道</p>                                      
-                      <p style="font-size:13px; color:#666;">预算：面议 |           
-  区域：广东深圳 | 发布时间：2026-03-16</p>                                         
-                  </div>                                                            
-                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
-  margin-bottom:10px;">                                                             
-                      <p style="font-size:14px; font-weight:bold;                   
-  color:#1a2a3a;">求购：大吨位货梯 5吨/3层</p>                                      
-                      <p style="font-size:13px; color:#666;">预算：面议 | 区域：北京
-  | 发布时间：2026-03-15</p>                                                        
-                  </div>                                                            
-              </div>                                                                
+          <div class="floor-badge"> 0 楼 </div>                                       
+          <h2 class="floor-title">电梯行业新闻资讯                                  
+  <span>（政策解读/行业动态/技术前沿）</span> <a href="floor9-more.html"            
+  class="more-link" target="_blank">更多</a></h2>                                   
+          <div class="news-card">                                                   
+              <span class="news-tag">政策法规</span>                                
+              <span class="news-tag">重点</span>                                    
+              <h4>《电梯安全条例（修订草案）》正式向社会公开征求意见</h4>           
+              <div class="news-date">发布时间：2026-03-17 |                         
+  来源：国家市场监督管理总局</div>                                                  
+              <p>修订草案共8章62条，主要修改内容包括：完善电梯生产、经营、使用、检验
+  、检测和维修保养全过程安全监管要求；加大对违法行为的处罚力度；强化电梯使用单位主体
+  责任；鼓励电梯物联网技术在电梯安全管理中的应用。</p>                              
+          </div>                                                                    
+          <div class="news-card">                                                   
+              <span class="news-tag">行业动态</span>                                
+              <h4>2026年中国国际电梯展览会将于5月在上海盛大开幕</h4>                
+              <div class="news-date">发布时间：2026-03-15 | 来源：中国电梯协会</div>
+              <p>本届展会面积超过10万平方米，预计吸引来自全球30多个国家和地区的600余
+  家电梯企业参展。展品范围涵盖电梯整机、零部件、安装维保设备、智能控制系统等全产业链
+  产品。同期还将举办电梯产业发展高峰论坛、新技术发布会等系列活动。</p>              
+          </div>                                                                    
+          <div class="news-card">                                                   
+              <span class="news-tag">技术前沿</span>                                
+              <h4>AI+电梯：智慧电梯 trends 加速落地，电梯物联网覆盖率突破50%</h4>   
+              <div class="news-date">发布时间：2026-03-12 | 来源：行业媒体</div>    
+              <p>截至2026年初，全国已安装电梯物联网设备超过200万台，覆盖率突破50%。A
+  I技术在电梯领域的应用愈发成熟：预测性维护准确率达到92%、智能派单系统使救援响应时间
+  缩短40%、能耗监测系统帮助电梯节能15%-25%。</p>                                    
+          </div>                                                                    
+          <div class="news-card">                                                   
+              <span class="news-tag">市场分析</span>                                
+              <h4>老旧小区改造加速，电梯加装市场持续升温</h4>                       
+              <div class="news-date">发布时间：2026-03-08 | 来源：住建部官网</div>  
+              <p>2026年全国计划完成老旧小区改造5.3万个，其中电梯加装需求预计超过80万
+  台。多地政府出台补贴政策，上海、广州、杭州等地加装电梯数量同比增长超过60%。钢结构 
+  井道、预制混凝土井道等新型加装技术方案不断涌现。</p>                              
+          </div>                                                                    
+          <div class="news-card">                                                   
+              <span class="news-tag">安全警示</span>                                
+              <h4>市场监管总局发布2025年度电梯安全状况白皮书</h4>                   
+              <div class="news-date">发布时间：2026-03-01 | 来源：市场监管总局</div>
+              <p>白皮书显示，2025年全国电梯事故发生率同比下降12%，万台事故率降至0.15
+  %。但电梯使用年限超过15年的老旧电梯安全问题仍不容忽视，建议加快老旧电梯评估和更新 
+  改造工作。</p>                                                                    
+          </div>                                                                    
+          <div class="news-card">                                                   
+              <span class="news-tag">企业新闻</span>                                
+              <h4>三菱电梯发布新一代LEHY-Pro系列电梯产品</h4>                       
+              <div class="news-date">发布时间：2026-02-25 | 来源：三菱电梯官网</div>
+              <p>新一代LEHY-Pro系列采用全新技术平台，载重量覆盖320kg-2000kg，运行速 
+  度最高可达6m/s。配备AI群控系统和能量反馈装置，能耗较上一代产品降低25%，预计将于202
+  6年下半年正式上市。</p>                                                           
           </div>                                                                    
       </section>                                                                    
                                                                                     
@@ -911,59 +854,115 @@
                                                                                     
       <!-- 9楼：电梯行业新闻资讯 -->                                                
       <section class="floor-section" id="floor9">                                   
-          <div class="floor-badge">9 楼</div>                                       
-          <h2 class="floor-title">电梯行业新闻资讯                                  
-  <span>（政策解读/行业动态/技术前沿）</span> <a href="floor9-more.html"            
-  class="more-link" target="_blank">更多</a></h2>                                   
-          <div class="news-card">                                                   
-              <span class="news-tag">政策法规</span>                                
-              <span class="news-tag">重点</span>                                    
-              <h4>《电梯安全条例（修订草案）》正式向社会公开征求意见</h4>           
-              <div class="news-date">发布时间：2026-03-17 |                         
-  来源：国家市场监督管理总局</div>                                                  
-              <p>修订草案共8章62条，主要修改内容包括：完善电梯生产、经营、使用、检验
-  、检测和维修保养全过程安全监管要求；加大对违法行为的处罚力度；强化电梯使用单位主体
-  责任；鼓励电梯物联网技术在电梯安全管理中的应用。</p>                              
-          </div>                                                                    
-          <div class="news-card">                                                   
-              <span class="news-tag">行业动态</span>                                
-              <h4>2026年中国国际电梯展览会将于5月在上海盛大开幕</h4>                
-              <div class="news-date">发布时间：2026-03-15 | 来源：中国电梯协会</div>
-              <p>本届展会面积超过10万平方米，预计吸引来自全球30多个国家和地区的600余
-  家电梯企业参展。展品范围涵盖电梯整机、零部件、安装维保设备、智能控制系统等全产业链
-  产品。同期还将举办电梯产业发展高峰论坛、新技术发布会等系列活动。</p>              
-          </div>                                                                    
-          <div class="news-card">                                                   
-              <span class="news-tag">技术前沿</span>                                
-              <h4>AI+电梯：智慧电梯 trends 加速落地，电梯物联网覆盖率突破50%</h4>   
-              <div class="news-date">发布时间：2026-03-12 | 来源：行业媒体</div>    
-              <p>截至2026年初，全国已安装电梯物联网设备超过200万台，覆盖率突破50%。A
-  I技术在电梯领域的应用愈发成熟：预测性维护准确率达到92%、智能派单系统使救援响应时间
-  缩短40%、能耗监测系统帮助电梯节能15%-25%。</p>                                    
-          </div>                                                                    
-          <div class="news-card">                                                   
-              <span class="news-tag">市场分析</span>                                
-              <h4>老旧小区改造加速，电梯加装市场持续升温</h4>                       
-              <div class="news-date">发布时间：2026-03-08 | 来源：住建部官网</div>  
-              <p>2026年全国计划完成老旧小区改造5.3万个，其中电梯加装需求预计超过80万
-  台。多地政府出台补贴政策，上海、广州、杭州等地加装电梯数量同比增长超过60%。钢结构 
-  井道、预制混凝土井道等新型加装技术方案不断涌现。</p>                              
-          </div>                                                                    
-          <div class="news-card">                                                   
-              <span class="news-tag">安全警示</span>                                
-              <h4>市场监管总局发布2025年度电梯安全状况白皮书</h4>                   
-              <div class="news-date">发布时间：2026-03-01 | 来源：市场监管总局</div>
-              <p>白皮书显示，2025年全国电梯事故发生率同比下降12%，万台事故率降至0.15
-  %。但电梯使用年限超过15年的老旧电梯安全问题仍不容忽视，建议加快老旧电梯评估和更新 
-  改造工作。</p>                                                                    
-          </div>                                                                    
-          <div class="news-card">                                                   
-              <span class="news-tag">企业新闻</span>                                
-              <h4>三菱电梯发布新一代LEHY-Pro系列电梯产品</h4>                       
-              <div class="news-date">发布时间：2026-02-25 | 来源：三菱电梯官网</div>
-              <p>新一代LEHY-Pro系列采用全新技术平台，载重量覆盖320kg-2000kg，运行速 
-  度最高可达6m/s。配备AI群控系统和能量反馈装置，能耗较上一代产品降低25%，预计将于202
-  6年下半年正式上市。</p>                                                           
+          <div class="floor-badge"> 9 楼 </div>                                       
+          <h2 class="floor-title">客户求购与咨询区                                  
+  <span>（发布需求/快速匹配）</span> <a href="floor0-more.html" class="more-link"   
+  target="_blank">更多</a></h2>                                                     
+          <div class="grid-3">                                                      
+              <div class="item-card">                                               
+                  <h4>📋 求购发布表单</h4>                                          
+                  <form onsubmit="handleSubmit(event,                               
+  '求购信息已提交！我们将尽快为您匹配供应商。')">                                   
+                      <div class="form-group">                                      
+                          <label>需求类型</label>                                   
+                          <select required>                                         
+                              <option value="">请选择</option>                      
+                              <option>新梯采购</option>                             
+                              <option>电梯安装</option>                             
+                              <option>维保服务</option>                             
+                              <option>配件采购</option>                             
+                              <option>电梯改造</option>                             
+                              <option>拆梯回收</option>                             
+                              <option>二手配件</option>                             
+                              <option>其他</option>                                 
+                          </select>                                                 
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>品牌/型号</label>                                  
+                          <input type="text" placeholder="如：三菱GPS-III" required>
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>数量</label>                                       
+                          <input type="number" placeholder="1" min="1">             
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>预算范围</label>                                   
+                          <input type="text" placeholder="如：10-20万">             
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>联系方式</label>                                   
+                          <input type="text" placeholder="手机号/微信号/邮箱"       
+  required>                                                                         
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>备注说明</label>                                   
+                          <textarea placeholder="请描述您的具体需求..."></textarea> 
+                      </div>                                                        
+                      <button type="submit" class="submit-btn">提交求购需求</button>
+                  </form>                                                           
+              </div>                                                                
+              <div class="item-card">                                               
+                  <h4>💬 在线咨询</h4>                                              
+                  <form onsubmit="handleSubmit(event,                               
+  '咨询信息已提交！客服将在30分钟内联系您。')">                                     
+                      <div class="form-group">                                      
+                          <label>咨询主题</label>                                   
+                          <select required>                                         
+                              <option value="">请选择</option>                      
+                              <option>产品咨询</option>                             
+                              <option>价格咨询</option>                             
+                              <option>技术咨询</option>                             
+                              <option>售后咨询</option>                             
+                              <option>合作咨询</option>                             
+                          </select>                                                 
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>联系人</label>                                     
+                          <input type="text" placeholder="您的姓名" required>       
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>联系电话</label>                                   
+                          <input type="tel" placeholder="您的手机号" required>      
+                      </div>                                                        
+                      <div class="form-group">                                      
+                          <label>咨询内容</label>                                   
+                          <textarea placeholder="请详细描述您的问题..."             
+  required></textarea>                                                              
+                      </div>                                                        
+                      <button type="submit" class="submit-btn">提交咨询</button>    
+                  </form>                                                           
+              </div>                                                                
+              <div class="item-card">                                               
+                  <h4>📢 最新求购信息</h4>                                          
+                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
+  margin-bottom:10px;">                                                             
+                      <p style="font-size:14px; font-weight:bold;                   
+  color:#1a2a3a;">求购：日立无机房客梯 3台</p>                                      
+                      <p style="font-size:13px; color:#666;">预算：30-40万 |        
+  区域：江苏南京 | 发布时间：2026-03-18</p>                                         
+                  </div>                                                            
+                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
+  margin-bottom:10px;">                                                             
+                      <p style="font-size:14px; font-weight:bold;                   
+  color:#1a2a3a;">求购：6层站门机控制器批量</p>                                     
+                      <p style="font-size:13px; color:#666;">预算：1-2万 |          
+  区域：浙江杭州 | 发布时间：2026-03-17</p>                                         
+                  </div>                                                            
+                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
+  margin-bottom:10px;">                                                             
+                      <p style="font-size:14px; font-weight:bold;                   
+  color:#1a2a3a;">求购：观光电梯钢结构井道</p>                                      
+                      <p style="font-size:13px; color:#666;">预算：面议 |           
+  区域：广东深圳 | 发布时间：2026-03-16</p>                                         
+                  </div>                                                            
+                  <div style="background:#f1f5f9; padding:10px; border-radius:6px;  
+  margin-bottom:10px;">                                                             
+                      <p style="font-size:14px; font-weight:bold;                   
+  color:#1a2a3a;">求购：大吨位货梯 5吨/3层</p>                                      
+                      <p style="font-size:13px; color:#666;">预算：面议 | 区域：北京
+  | 发布时间：2026-03-15</p>                                                        
+                  </div>                                                            
+              </div>                                                                
           </div>                                                                    
       </section>                                                                    
   </main>                                                                           
@@ -976,61 +975,52 @@
   </footer>                                                                         
                                                                                     
   <script>                                                                          
-      // 电梯面板功能                                                               
-      const elevatorButtons = document.querySelectorAll('.elevator-btn');           
-      const elevatorScreen = document.querySelector('.elevator-screen');            
-      const elevatorNotify = document.getElementById('elevatorNotify');             
-      const notifyFloorText = document.getElementById('notifyFloorText');           
-      let activeFloor = null;                                                       
-                                                                                    
-      elevatorButtons.forEach(btn => {                                              
-          btn.addEventListener('click', function(e) {                               
-              e.preventDefault();                                                   
-              const floor = this.getAttribute('data-floor');                        
-              elevatorButtons.forEach(b => b.classList.remove('active'));           
-              this.classList.add('active');                                         
-              activeFloor = floor;                                                  
-              elevatorScreen.textContent = '▼ ' + floor + 'F';                      
-              const target = document.getElementById('floor' + floor);              
-              if (target) {                                                         
-                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });    
-              }                                                                     
-              notifyFloorText.textContent = floor + '楼';                           
-              elevatorNotify.classList.remove('show');                              
-              void elevatorNotify.offsetWidth;                                      
-              elevatorNotify.classList.add('show');                                 
-              setTimeout(() => {                                                    
-                  elevatorNotify.classList.remove('show');                          
-              }, 2000);                                                             
-          });                                                                       
-      });                                                                           
-                                                                                    
-      let scrollTimeout;                                                            
-      window.addEventListener('scroll', function() {                                
-          clearTimeout(scrollTimeout);                                              
-          scrollTimeout = setTimeout(() => {                                        
-              const sections = document.querySelectorAll('.floor-section');         
-              const scrollPos = window.scrollY + window.innerHeight / 3;            
-              sections.forEach(section => {                                         
-                  const top = section.offsetTop;                                    
-                  const bottom = top + section.offsetHeight;                        
-                  if (scrollPos >= top && scrollPos < bottom) {                     
-                      const floorId = section.getAttribute('id');                   
-                      const floorNum = floorId.replace('floor', '');                
-                      elevatorButtons.forEach(b => {                                
-                          if (b.getAttribute('data-floor') === floorNum) {          
-                              b.classList.add('active');                            
-                              elevatorScreen.textContent = '▼ ' + floorNum + 'F';   
-                          } else {                                                  
-                              b.classList.remove('active');                         
-                          }                                                         
-                      });                                                           
-                  }                                                                 
-              });                                                                   
-          }, 100);                                                                  
-      });                                                                           
-                                                                                    
-      // 表单提交处理                                                               
+      // 电梯楼层导航功能（顶部居中）
+      const elevatorButtons = document.querySelectorAll('.top-elevator-btn');
+      const elevatorScreen = document.getElementById('topElevatorScreen');
+      let activeFloor = null;
+
+      elevatorButtons.forEach(btn => {
+          btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              const floor = this.getAttribute('data-floor');
+              elevatorButtons.forEach(b => b.classList.remove('active'));
+              this.classList.add('active');
+              activeFloor = floor;
+              elevatorScreen.textContent = '▼ ' + floor + 'F';
+              const target = document.getElementById('floor' + floor);
+              if (target) {
+                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+          });
+      });
+
+      let scrollTimeout;
+      window.addEventListener('scroll', function() {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+              const sections = document.querySelectorAll('.floor-section');
+              const scrollPos = window.scrollY + window.innerHeight / 3;
+              sections.forEach(section => {
+                  const top = section.offsetTop;
+                  const bottom = top + section.offsetHeight;
+                  if (scrollPos >= top && scrollPos < bottom) {
+                      const floorId = section.getAttribute('id');
+                      const floorNum = floorId.replace('floor', '');
+                      elevatorButtons.forEach(b => {
+                          if (b.getAttribute('data-floor') === floorNum) {
+                              b.classList.add('active');
+                              elevatorScreen.textContent = '▼ ' + floorNum + 'F';
+                          } else {
+                              b.classList.remove('active');
+                          }
+                      });
+                  }
+              });
+          }, 100);
+      });
+
+// 表单提交处理                                                               
       function handleSubmit(event, message) {                                       
           event.preventDefault();                                                   
           alert(message);                                                           
@@ -1040,7 +1030,7 @@
       window.addEventListener('load', function() {                                  
           setTimeout(() => {                                                        
               const firstBtn =                                                      
-  document.querySelector('.elevator-btn[data-floor="0"]');                          
+  document.querySelector('.top-elevator-btn[data-floor="0"]');                          
               if (firstBtn) {                                                       
                   firstBtn.classList.add('active');                                 
               }                                                                     
@@ -1261,8 +1251,4 @@
       initAuthState();                                                              
   </script>                                                                         
   </body>                                                                           
-  </html>                                                                           
-                                                                                    
-  </parameter>                                                                      
-  </function>                                                                       
-  </tool_call>
+  </html>
