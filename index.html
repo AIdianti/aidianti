@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI智能电梯服务 - 全产业链电梯一站式服务平台</title>
+    <title>AI智能电梯服务 - 全产业链数字化一站式平台</title>
     <style>
         /* 全局样式重置 */
         * {
@@ -18,12 +18,12 @@
             background-color: #f4f6f9;
             color: #333;
             line-height: 1.6;
-            padding-right: 80px; /* 为右侧电梯控制面板留出空间 */
+            padding-right: 90px; /* 为右侧电梯控制面板留出空间 */
         }
 
         /* 顶部导航 */
         header {
-            background-color: #1a2a3a;
+            background-color: #0f172a;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -42,7 +42,7 @@
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #00d2ff;
+            color: #38bdf8;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -55,7 +55,7 @@
 
         /* 欢迎大屏 */
         .hero {
-            background: linear-gradient(135deg, #1a2a3a 0%, #2a4a6a 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
             color: white;
             text-align: center;
             padding: 80px 20px;
@@ -88,7 +88,7 @@
             padding: 40px 30px;
             margin-bottom: 40px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 6px solid #1a2a3a;
+            border-left: 6px solid #0f172a;
             position: relative;
         }
 
@@ -97,18 +97,18 @@
             position: absolute;
             top: -15px;
             left: 20px;
-            background: linear-gradient(135deg, #ff9900 0%, #ff5500 100%);
+            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 14px;
-            box-shadow: 0 4px 8px rgba(255,85,0,0.3);
+            box-shadow: 0 4px 8px rgba(37,99,235,0.3);
         }
 
         .floor-title {
             font-size: 24px;
-            color: #1a2a3a;
+            color: #0f172a;
             margin-bottom: 25px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f2f5;
@@ -136,12 +136,12 @@
         .item-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-color: #007aff;
+            border-color: #38bdf8;
         }
 
         /* 价格标签 */
         .price-tag {
-            color: #ff3b30;
+            color: #ef4444;
             font-size: 18px;
             font-weight: bold;
             margin-top: 10px;
@@ -153,6 +153,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
+            margin-bottom: 15px;
         }
 
         .price-table th, .price-table td {
@@ -163,7 +164,7 @@
 
         .price-table th {
             background-color: #f1f5f9;
-            color: #1a2a3a;
+            color: #0f172a;
         }
 
         /* 交流论坛样式 */
@@ -172,7 +173,7 @@
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
-            border-left: 3px solid #007aff;
+            border-left: 3px solid #2563eb;
         }
 
         .forum-meta {
@@ -181,20 +182,20 @@
             margin-top: 5px;
         }
 
-        /* 右侧电梯控制面板导航 */
+        /* 右侧电梯控制面板导航（已反序：高楼层在上） */
         .elevator-panel {
             position: fixed;
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            background-color: #222;
-            border: 3px solid #444;
+            background-color: #1e293b;
+            border: 3px solid #475569;
             border-radius: 15px;
             padding: 15px 10px;
             display: flex;
-            flex-direction: column-reverse; /* 让1楼在最下面，符合电梯习惯 */
+            flex-direction: column; /* 改为正常向下流，使高楼层显示在上方 */
             gap: 8px;
-            box-shadow: 0 10px 3px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             z-index: 999;
         }
 
@@ -202,9 +203,9 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            border: 2px solid #666;
-            background: radial-gradient(circle, #444 0%, #222 100%);
-            color: #aaa;
+            border: 2px solid #64748b;
+            background: radial-gradient(circle, #334155 0%, #1e293b 100%);
+            color: #94a3b8;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
@@ -216,33 +217,33 @@
         }
 
         .elevator-btn:hover {
-            color: #00d2ff;
-            border-color: #00d2ff;
-            box-shadow: 0 0 10px #00d2ff;
+            color: #38bdf8;
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px #38bdf8;
         }
 
         /* 屏显指示器 */
         .elevator-screen {
             background-color: #000;
-            color: #ff3b30;
+            color: #ef4444;
             font-family: monospace;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             padding: 5px;
             border-radius: 5px;
             margin-bottom: 5px;
-            border: 1px solid #333;
-            text-shadow: 0 0 5px #ff3b30;
+            border: 1px solid #334155;
+            text-shadow: 0 0 5px #ef4444;
         }
 
         /* 页脚 */
         footer {
-            background-color: #1a2a3a;
-            color: #888;
+            background-color: #0f172a;
+            color: #64748b;
             text-align: center;
             padding: 20px;
             font-size: 14px;
-            margin-top: 5px;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -251,55 +252,55 @@
     <!-- 顶部导航 -->
     <header>
         <div class="nav-container">
-            <div class="logo">🛗 梯安通</div>
-            <div class="nav-info">全国电梯产业链数字化综合服务平台</div>
+            <div class="logo">🤖 AI智能电梯服务</div>
+            <div class="nav-info">全产业链智能数智化一站式平台</div>
         </div>
     </header>
 
     <!-- 欢迎大屏 -->
     <section class="hero">
-        <h1>欢迎来到现代智能电梯商城</h1>
-        <p>点击右侧“电梯按键面板”可快速跳转至对应业务楼层，查报价、找队伍、看案例一网打尽。</p>
+        <h1>欢迎使用 AI 智能电梯数字大楼</h1>
+        <p>我们用AI技术赋能传统电梯业。请使用右侧“电梯按键面板”直达对应服务楼层（8楼至1楼）。</p>
     </section>
 
-    <!-- 右侧电梯模拟控制面板 -->
+    <!-- 右侧电梯模拟控制面板（高楼层在上，符合视觉反序需求） -->
     <div class="elevator-panel">
-        <a href="#floor1" class="elevator-btn">1F</a>
-        <a href="#floor2" class="elevator-btn">2F</a>
-        <a href="#floor3" class="elevator-btn">3F</a>
-        <a href="#floor4" class="elevator-btn">4F</a>
-        <a href="#floor5" class="elevator-btn">5F</a>
-        <a href="#floor6" class="elevator-btn">6F</a>
-        <a href="#floor7" class="elevator-btn">7F</a>
+        <div class="elevator-screen">AI 🛗</div>
         <a href="#floor8" class="elevator-btn">8F</a>
-        <div class="elevator-screen">▲ 🛗</div>
+        <a href="#floor7" class="elevator-btn">7F</a>
+        <a href="#floor6" class="elevator-btn">6F</a>
+        <a href="#floor5" class="elevator-btn">5F</a>
+        <a href="#floor4" class="elevator-btn">4F</a>
+        <a href="#floor3" class="elevator-btn">3F</a>
+        <a href="#floor2" class="elevator-btn">2F</a>
+        <a href="#floor1" class="elevator-btn">1F</a>
     </div>
 
-    <!-- 主要内容区（楼层展示） -->
+    <!-- 主要内容区 -->
     <main>
 
         <!-- 一楼：新梯产品 -->
         <section class="floor-section" id="floor1">
             <div class="floor-badge">1 楼</div>
-            <h2 class="floor-title">新梯产品中心 <span>（一线主流品牌正品直销）</span></h2>
+            <h2 class="floor-title">新梯产品中心 <span>（一线主流品牌正品直销与自主选配）</span></h2>
             <div class="grid-3">
                 <div class="item-card">
                     <h3>三菱电梯 (Mitsubishi)</h3>
                     <p>品类：高端乘客电梯、高速商务电梯</p>
-                    <p>特点：运行平稳、智能化控梯、超低故障率</p>
-                    <span class="price-tag">直销价面议 / 支持定制</span>
+                    <p>特点：运行平稳、AI智能分配客流、超低故障率</p>
+                    <span class="price-tag">直销价面议 / 支持AI客制化</span>
                 </div>
                 <div class="item-card">
                     <h3>日立电梯 (Hitachi)</h3>
                     <p>品类：住宅电梯、观光电梯、医用电梯</p>
                     <p>特点：绿色节能、大载重设计、超强空间利用率</p>
-                    <span class="price-tag">厂家特惠中</span>
+                    <span class="price-tag">厂家特惠中 / 赠智能网关</span>
                 </div>
                 <div class="item-card">
                     <h3>奥的斯电梯 (OTIS)</h3>
                     <p>品类：加装梯、商用无机房客梯</p>
-                    <p>特点：百年品牌、钢带技术、安全防护升级</p>
-                    <span class="price-tag">限时让利让利</span>
+                    <p>特点：百年品牌、强韧钢带技术、AI安全防护预警升级</p>
+                    <span class="price-tag">限时特惠让利</span>
                 </div>
             </div>
         </section>
@@ -307,7 +308,7 @@
         <!-- 二楼：电梯安装 -->
         <section class="floor-section" id="floor2">
             <div class="floor-badge">2 楼</div>
-            <h2 class="floor-title">全国安装团队及报价 <span>（持证上岗/经验丰富）</span></h2>
+            <h2 class="floor-title">全国安装团队及安装报价 <span>（严格考核 / 线上动态监理）</span></h2>
             <div class="grid-3">
                 <div class="item-card">
                     <h3>江浙沪专业安装铁军</h3>
@@ -317,7 +318,7 @@
                 <div class="item-card">
                     <h3>华南老牌老旧小区加装队</h3>
                     <p>资质：电梯安装B级资质</p>
-                    <p>擅长：老旧住宅加装电梯、钢结构一体化井道</p>
+                    <p>擅长：老旧住宅加装电梯、钢结构一体化井道施工</p>
                 </div>
             </div>
             <table class="price-table">
@@ -348,5 +349,3 @@
 
         <!-- 三楼：电梯维保 -->
         <section class="floor-section" id="floor3">
-            <div class="floor-badge">3 楼</div>
-            <h2 class="floor-title">维保公司及驻点报价 <span>（24小时紧急救援保障）</span></h2>
