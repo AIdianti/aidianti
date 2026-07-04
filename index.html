@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI智能电梯服务</title>
+    <title>AI智能电梯服务 - 全产业链电梯一站式服务平台</title>
     <style>
         /* 全局样式重置 */
         * {
@@ -11,21 +11,23 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            scroll-behavior: smooth; /* 平滑滚动 */
         }
 
         body {
-            background-color: #f5f7fa;
+            background-color: #f4f6f9;
             color: #333;
             line-height: 1.6;
+            padding-right: 80px; /* 为右侧电梯控制面板留出空间 */
         }
 
-        /* 导航栏样式 */
+        /* 顶部导航 */
         header {
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background-color: #1a2a3a;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .nav-container {
@@ -34,258 +36,317 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            padding: 15px 20px;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #007aff;
-        }
-
-        .nav-links {
+            color: #00d2ff;
             display: flex;
-            list-style: none;
+            align-items: center;
+            gap: 10px;
         }
 
-        .nav-links li {
-            margin-left: 30px;
+        .nav-info {
+            color: #fff;
+            font-size: 14px;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #007aff;
-        }
-
-        /* 主视觉横幅区 (Hero Section) */
+        /* 欢迎大屏 */
         .hero {
-            background: linear-gradient(135deg, #007aff 0%, #00c6ff 100%);
+            background: linear-gradient(135deg, #1a2a3a 0%, #2a4a6a 100%);
             color: white;
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
         }
 
         .hero h1 {
-            font-size: 40px;
-            margin-bottom: 20px;
+            font-size: 36px;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
         .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .cta-btn {
-            background-color: white;
-            color: #007aff;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
             font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        /* 主要内容区 */
+        /* 主体楼层容器 */
         main {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
-        .section-title {
-            text-align: center;
+        /* 通用楼层样式 */
+        .floor-section {
+            background-color: white;
+            border-radius: 12px;
+            padding: 40px 30px;
             margin-bottom: 40px;
-            font-size: 28px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 6px solid #1a2a3a;
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: #007aff;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* 卡片网格布局 */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        /* 联系表单区 */
-        .contact-section {
-            background-color: white;
-            border-radius: 10px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto 60px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+        /* 楼层徽章样式 */
+        .floor-badge {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff9900 0%, #ff5500 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
             font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s;
+            box-shadow: 0 4px 8px rgba(255,85,0,0.3);
         }
 
-        .form-group input:focus, .form-group textarea:focus {
+        .floor-title {
+            font-size: 24px;
+            color: #1a2a3a;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f2f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* 网格布局 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* 卡片基础样式 */
+        .item-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             border-color: #007aff;
         }
 
-        .submit-btn {
-            background-color: #007aff;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
+        /* 价格标签 */
+        .price-tag {
+            color: #ff3b30;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* 表格样式（适用于报价展示） */
+        .price-table {
             width: 100%;
-            transition: background-color 0.3s;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
 
-        .submit-btn:hover {
-            background-color: #0056b3;
+        .price-table th, .price-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
         }
 
-        /* 页脚样式 */
-        footer {
+        .price-table th {
+            background-color: #f1f5f9;
+            color: #1a2a3a;
+        }
+
+        /* 交流论坛样式 */
+        .forum-post {
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #007aff;
+        }
+
+        .forum-meta {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* 右侧电梯控制面板导航 */
+        .elevator-panel {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             background-color: #222;
+            border: 3px solid #444;
+            border-radius: 15px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column-reverse; /* 让1楼在最下面，符合电梯习惯 */
+            gap: 8px;
+            box-shadow: 0 10px 3px rgba(0,0,0,0.3);
+            z-index: 999;
+        }
+
+        .elevator-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid #666;
+            background: radial-gradient(circle, #444 0%, #222 100%);
+            color: #aaa;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .elevator-btn:hover {
+            color: #00d2ff;
+            border-color: #00d2ff;
+            box-shadow: 0 0 10px #00d2ff;
+        }
+
+        /* 屏显指示器 */
+        .elevator-screen {
+            background-color: #000;
+            color: #ff3b30;
+            font-family: monospace;
+            font-size: 18px;
+            text-align: center;
+            padding: 5px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #333;
+            text-shadow: 0 0 5px #ff3b30;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #1a2a3a;
             color: #888;
             text-align: center;
-            padding: 30px 20px;
+            padding: 20px;
             font-size: 14px;
+            margin-top: 5px;
         }
     </style>
 </head>
 <body>
 
-    <!-- 导航栏 -->
+    <!-- 顶部导航 -->
     <header>
         <div class="nav-container">
-            <div class="logo">AI智能电梯服务</div>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#services">服务</a></li>
-                <li><a href="#contact">联系我们</a></li>
-            </ul>
+            <div class="logo">🛗 梯安通</div>
+            <div class="nav-info">全国电梯产业链数字化综合服务平台</div>
         </div>
     </header>
 
-    <!-- 主视觉横幅区 -->
-    <section class="hero" id="home">
-        <h1>欢迎来到我的专属网页</h1>
-        <p>这是一个使用现代 HTML5 和 CSS3 打造的简洁响应式页面。您可以随意修改它。</p>
-        <button class="cta-btn" onclick="alert('感谢点击！')">立即开始</button>
+    <!-- 欢迎大屏 -->
+    <section class="hero">
+        <h1>欢迎来到现代智能电梯商城</h1>
+        <p>点击右侧“电梯按键面板”可快速跳转至对应业务楼层，查报价、找队伍、看案例一网打尽。</p>
     </section>
 
-    <!-- 主要内容区 -->
+    <!-- 右侧电梯模拟控制面板 -->
+    <div class="elevator-panel">
+        <a href="#floor1" class="elevator-btn">1F</a>
+        <a href="#floor2" class="elevator-btn">2F</a>
+        <a href="#floor3" class="elevator-btn">3F</a>
+        <a href="#floor4" class="elevator-btn">4F</a>
+        <a href="#floor5" class="elevator-btn">5F</a>
+        <a href="#floor6" class="elevator-btn">6F</a>
+        <a href="#floor7" class="elevator-btn">7F</a>
+        <a href="#floor8" class="elevator-btn">8F</a>
+        <div class="elevator-screen">▲ 🛗</div>
+    </div>
+
+    <!-- 主要内容区（楼层展示） -->
     <main>
-        <!-- 服务特点区 -->
-        <section id="services">
-            <h2 class="section-title">我们的服务</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-icon">🚀</div>
-                    <h3>高效极速</h3>
-                    <p>代码经过极致优化，页面加载秒开，提供丝滑流畅的用户访问体验。</p>
+
+        <!-- 一楼：新梯产品 -->
+        <section class="floor-section" id="floor1">
+            <div class="floor-badge">1 楼</div>
+            <h2 class="floor-title">新梯产品中心 <span>（一线主流品牌正品直销）</span></h2>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h3>三菱电梯 (Mitsubishi)</h3>
+                    <p>品类：高端乘客电梯、高速商务电梯</p>
+                    <p>特点：运行平稳、智能化控梯、超低故障率</p>
+                    <span class="price-tag">直销价面议 / 支持定制</span>
                 </div>
-                <div class="card">
-                    <div class="card-icon">📱</div>
-                    <h3>响应式布局</h3>
-                    <p>完美适配手机、平板及电脑屏幕，不论任何设备都能提供绝佳视觉效果。</p>
+                <div class="item-card">
+                    <h3>日立电梯 (Hitachi)</h3>
+                    <p>品类：住宅电梯、观光电梯、医用电梯</p>
+                    <p>特点：绿色节能、大载重设计、超强空间利用率</p>
+                    <span class="price-tag">厂家特惠中</span>
                 </div>
-                <div class="card">
-                    <div class="card-icon">🎨</div>
-                    <h3>现代设计</h3>
-                    <p>采用极简大气的设计风格，搭配渐变色与优雅阴影，凸显高级质感。</p>
+                <div class="item-card">
+                    <h3>奥的斯电梯 (OTIS)</h3>
+                    <p>品类：加装梯、商用无机房客梯</p>
+                    <p>特点：百年品牌、钢带技术、安全防护升级</p>
+                    <span class="price-tag">限时让利让利</span>
                 </div>
             </div>
         </section>
 
-        <!-- 联系表单区 -->
-        <section id="contact">
-            <h2 class="section-title">联系我们</h2>
-            <div class="contact-section">
-                <form onsubmit="event.preventDefault(); alert('表单提交成功！（这只是前端演示）');">
-                    <div class="form-group">
-                        <label for="name">您的姓名</label>
-                        <input type="text" id="name" placeholder="请输入姓名" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">电子邮箱</label>
-                        <input type="email" id="email" placeholder="请输入邮箱" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">您的留言</label>
-                        <textarea id="message" rows="4" placeholder="请写下您想说的话..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">提交信息</button>
-                </form>
+        <!-- 二楼：电梯安装 -->
+        <section class="floor-section" id="floor2">
+            <div class="floor-badge">2 楼</div>
+            <h2 class="floor-title">全国安装团队及报价 <span>（持证上岗/经验丰富）</span></h2>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h3>江浙沪专业安装铁军</h3>
+                    <p>资质：电梯安装A级资质</p>
+                    <p>擅长：高速梯、群控商业电梯复杂工况安装</p>
+                </div>
+                <div class="item-card">
+                    <h3>华南老牌老旧小区加装队</h3>
+                    <p>资质：电梯安装B级资质</p>
+                    <p>擅长：老旧住宅加装电梯、钢结构一体化井道</p>
+                </div>
             </div>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>电梯类型</th>
+                        <th>层站配置</th>
+                        <th>参考安装基础报价</th>
+                        <th>工期周期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>有机房传统客梯</td>
+                        <td>9层/9站/9门</td>
+                        <td>￥26,000 元/台起</td>
+                        <td>15-20 个工作日</td>
+                    </tr>
+                    <tr>
+                        <td>无机房住宅客梯</td>
+                        <td>11层/11站/11门</td>
+                        <td>￥32,000 元/台起</td>
+                        <td>18-25 个工作日</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
-    </main>
 
-    <!-- 页脚版权区 -->
-    <footer>
-        <p>&copy; 2026 我的网站. 保留所有权利。</p>
-    </footer>
-
-</body>
-</html>
+        <!-- 三楼：电梯维保 -->
+        <section class="floor-section" id="floor3">
+            <div class="floor-badge">3 楼</div>
+            <h2 class="floor-title">维保公司及驻点报价 <span>（24小时紧急救援保障）</span></h2>
