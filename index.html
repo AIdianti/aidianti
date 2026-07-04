@@ -88,7 +88,7 @@
             padding: 40px 30px;
             margin-bottom: 40px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-left: 6px solid #0f172a;
+            border-left: 6px solid #1a2a3a;
             position: relative;
         }
 
@@ -97,18 +97,18 @@
             position: absolute;
             top: -15px;
             left: 20px;
-            background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+            background: linear-gradient(135deg, #ff9900 0%, #ff5500 100%);
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
             font-weight: bold;
             font-size: 14px;
-            box-shadow: 0 4px 8px rgba(37,99,235,0.3);
+            box-shadow: 0 4px 8px rgba(255,85,0,0.3);
         }
 
         .floor-title {
             font-size: 24px;
-            color: #0f172a;
+            color: #1a2a3a;
             margin-bottom: 25px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f2f5;
@@ -136,16 +136,22 @@
         .item-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-color: #38bdf8;
+            border-color: #007aff;
         }
 
         /* 价格标签 */
         .price-tag {
-            color: #ef4444;
+            color: #ff3b30;
             font-size: 18px;
             font-weight: bold;
             margin-top: 10px;
             display: block;
+        }
+
+        .price-note {
+            font-size: 13px;
+            color: #666;
+            margin-top: 5px;
         }
 
         /* 表格样式（适用于报价展示） */
@@ -153,7 +159,6 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
-            margin-bottom: 15px;
         }
 
         .price-table th, .price-table td {
@@ -164,7 +169,11 @@
 
         .price-table th {
             background-color: #f1f5f9;
-            color: #0f172a;
+            color: #1a2a3a;
+        }
+
+        .price-table tbody tr:hover {
+            background-color: #f8fafc;
         }
 
         /* 交流论坛样式 */
@@ -173,7 +182,12 @@
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
-            border-left: 3px solid #2563eb;
+            border-left: 3px solid #007aff;
+        }
+
+        .forum-post h4 {
+            margin-bottom: 8px;
+            color: #1a2a3a;
         }
 
         .forum-meta {
@@ -182,20 +196,50 @@
             margin-top: 5px;
         }
 
-        /* 右侧电梯控制面板导航（已反序：高楼层在上） */
+        .forum-tag {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0284c7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 6px;
+            margin-top: 5px;
+        }
+
+        /* 案例卡片 */
+        .case-card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .case-card h4 {
+            color: #1a2a3a;
+            margin-bottom: 8px;
+        }
+
+        .case-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 右侧电梯控制面板导航 */
         .elevator-panel {
             position: fixed;
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            background-color: #1e293b;
-            border: 3px solid #475569;
+            background-color: #222;
+            border: 3px solid #444;
             border-radius: 15px;
             padding: 15px 10px;
             display: flex;
-            flex-direction: column; /* 改为正常向下流，使高楼层显示在上方 */
+            flex-direction: column-reverse; /* 让1楼在最下面，符合电梯习惯 */
             gap: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 3px rgba(0,0,0,0.3);
             z-index: 999;
         }
 
@@ -203,9 +247,9 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            border: 2px solid #64748b;
-            background: radial-gradient(circle, #334155 0%, #1e293b 100%);
-            color: #94a3b8;
+            border: 2px solid #666;
+            background: radial-gradient(circle, #444 0%, #222 100%);
+            color: #aaa;
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
@@ -217,33 +261,33 @@
         }
 
         .elevator-btn:hover {
-            color: #38bdf8;
-            border-color: #38bdf8;
-            box-shadow: 0 0 10px #38bdf8;
+            color: #00d2ff;
+            border-color: #00d2ff;
+            box-shadow: 0 0 10px #00d2ff;
         }
 
         /* 屏显指示器 */
         .elevator-screen {
             background-color: #000;
-            color: #ef4444;
+            color: #ff3b30;
             font-family: monospace;
-            font-size: 16px;
+            font-size: 18px;
             text-align: center;
             padding: 5px;
             border-radius: 5px;
             margin-bottom: 5px;
-            border: 1px solid #334155;
-            text-shadow: 0 0 5px #ef4444;
+            border: 1px solid #333;
+            text-shadow: 0 0 5px #ff3b30;
         }
 
         /* 页脚 */
         footer {
-            background-color: #0f172a;
-            color: #64748b;
+            background-color: #1a2a3a;
+            color: #888;
             text-align: center;
             padding: 20px;
             font-size: 14px;
-            margin-top: 40px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -252,20 +296,19 @@
     <!-- 顶部导航 -->
     <header>
         <div class="nav-container">
-            <div class="logo">🤖 AI智能电梯服务</div>
-            <div class="nav-info">全产业链智能数智化一站式平台</div>
+            <div class="logo">🛗 AI智能电梯服务</div>
+            <div class="nav-info">全国电梯产业链数字化综合服务平台</div>
         </div>
     </header>
 
     <!-- 欢迎大屏 -->
     <section class="hero">
-        <h1>欢迎使用 AI 智能电梯数字大楼</h1>
-        <p>我们用AI技术赋能传统电梯业。请使用右侧“电梯按键面板”直达对应服务楼层（8楼至1楼）。</p>
+        <h1>欢迎来到 AI智能电梯服务</h1>
+        <p>点击右侧"电梯按键面板"可快速跳转至对应业务楼层，查报价、找队伍、看案例一网打尽。</p>
     </section>
 
-    <!-- 右侧电梯模拟控制面板（高楼层在上，符合视觉反序需求） -->
+    <!-- 右侧电梯模拟控制面板（反序：8F在上，1F在下） -->
     <div class="elevator-panel">
-        <div class="elevator-screen">AI 🛗</div>
         <a href="#floor8" class="elevator-btn">8F</a>
         <a href="#floor7" class="elevator-btn">7F</a>
         <a href="#floor6" class="elevator-btn">6F</a>
@@ -274,33 +317,58 @@
         <a href="#floor3" class="elevator-btn">3F</a>
         <a href="#floor2" class="elevator-btn">2F</a>
         <a href="#floor1" class="elevator-btn">1F</a>
+        <div class="elevator-screen">▲ 🛗</div>
     </div>
 
-    <!-- 主要内容区 -->
+    <!-- 主要内容区（楼层展示） -->
     <main>
 
-        <!-- 一楼：新梯产品 -->
+        <!-- 一楼：新梯产品中心 -->
         <section class="floor-section" id="floor1">
             <div class="floor-badge">1 楼</div>
-            <h2 class="floor-title">新梯产品中心 <span>（一线主流品牌正品直销与自主选配）</span></h2>
+            <h2 class="floor-title">新梯产品中心 <span>（一线主流品牌正品直销）</span></h2>
             <div class="grid-3">
                 <div class="item-card">
                     <h3>三菱电梯 (Mitsubishi)</h3>
                     <p>品类：高端乘客电梯、高速商务电梯</p>
-                    <p>特点：运行平稳、AI智能分配客流、超低故障率</p>
-                    <span class="price-tag">直销价面议 / 支持AI客制化</span>
+                    <p>特点：运行平稳、智能化控梯、超低故障率</p>
+                    <span class="price-tag">直销价面议 / 支持定制</span>
+                    <span class="price-note">提供整梯10年质保</span>
                 </div>
                 <div class="item-card">
                     <h3>日立电梯 (Hitachi)</h3>
                     <p>品类：住宅电梯、观光电梯、医用电梯</p>
                     <p>特点：绿色节能、大载重设计、超强空间利用率</p>
-                    <span class="price-tag">厂家特惠中 / 赠智能网关</span>
+                    <span class="price-tag">厂家特惠中</span>
+                    <span class="price-note">节能效率提升30%</span>
                 </div>
                 <div class="item-card">
                     <h3>奥的斯电梯 (OTIS)</h3>
                     <p>品类：加装梯、商用无机房客梯</p>
-                    <p>特点：百年品牌、强韧钢带技术、AI安全防护预警升级</p>
-                    <span class="price-tag">限时特惠让利</span>
+                    <p>特点：百年品牌、钢带技术、安全防护升级</p>
+                    <span class="price-tag">限时特惠</span>
+                    <span class="price-note">老房加装首选</span>
+                </div>
+                <div class="item-card">
+                    <h3>通力电梯 (KONE)</h3>
+                    <p>品类：自动扶梯、自动人行道</p>
+                    <p>特点：eco-friendly™环保技术、低噪音设计</p>
+                    <span class="price-tag">面议</span>
+                    <span class="price-note">商业综合体解决方案</span>
+                </div>
+                <div class="item-card">
+                    <h3>迅达电梯 (Schindler)</h3>
+                    <p>品类：中高速乘客电梯、摩天轮专用梯</p>
+                    <p>特点：PORT智能调度系统、紧凑型机房</p>
+                    <span class="price-tag">面议</span>
+                    <span class="price-note">智能楼宇首选</span>
+                </div>
+                <div class="item-card">
+                    <h3>西子电梯 (XIZI)</h3>
+                    <p>品类：国产中端客梯、货梯、无机房客梯</p>
+                    <p>特点：性价比高、服务网点多</p>
+                    <span class="price-tag">￥11.8万起</span>
+                    <span class="price-note">国产精品之选</span>
                 </div>
             </div>
         </section>
@@ -308,17 +376,25 @@
         <!-- 二楼：电梯安装 -->
         <section class="floor-section" id="floor2">
             <div class="floor-badge">2 楼</div>
-            <h2 class="floor-title">全国安装团队及安装报价 <span>（严格考核 / 线上动态监理）</span></h2>
+            <h2 class="floor-title">全国安装团队及报价 <span>（持证上岗/经验丰富）</span></h2>
             <div class="grid-3">
                 <div class="item-card">
                     <h3>江浙沪专业安装铁军</h3>
                     <p>资质：电梯安装A级资质</p>
+                    <p>服务区域：上海、江苏、浙江</p>
                     <p>擅长：高速梯、群控商业电梯复杂工况安装</p>
                 </div>
                 <div class="item-card">
                     <h3>华南老牌老旧小区加装队</h3>
                     <p>资质：电梯安装B级资质</p>
-                    <p>擅长：老旧住宅加装电梯、钢结构一体化井道施工</p>
+                    <p>服务区域：广东、广西、福建</p>
+                    <p>擅长：老旧住宅加装电梯、钢结构一体化井道</p>
+                </div>
+                <div class="item-card">
+                    <h3>北方重工特种安装队</h3>
+                    <p>资质：电梯安装A级资质</p>
+                    <p>服务区域：北京、天津、河北、山东</p>
+                    <p>擅长：大吨位货梯、防爆电梯、医用电梯安装</p>
                 </div>
             </div>
             <table class="price-table">
@@ -343,9 +419,390 @@
                         <td>￥32,000 元/台起</td>
                         <td>18-25 个工作日</td>
                     </tr>
+                    <tr>
+                        <td>观光电梯</td>
+                        <td>6层/6站/6门</td>
+                        <td>￥38,000 元/台起</td>
+                        <td>20-28 个工作日</td>
+                    </tr>
+                    <tr>
+                        <td>加装电梯（钢结构）</td>
+                        <td>6层/6站/6门</td>
+                        <td>￥45,000 元/台起</td>
+                        <td>30-45 个工作日</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
 
         <!-- 三楼：电梯维保 -->
         <section class="floor-section" id="floor3">
+            <div class="floor-badge">3 楼</div>
+            <h2 class="floor-title">维保公司及驻点报价 <span>（24小时紧急救援保障）</span></h2>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h3>中梯维保工程有限公司</h3>
+                    <p>服务范围：华北、华中地区</p>
+                    <p>优势：物联网实时监控，15分钟到达困人现场</p>
+                    <span class="price-tag">季度维保 ￥1,200/台起</span>
+                </div>
+                <div class="item-card">
+                    <h3>极速电梯维护中心</h3>
+                    <p>服务范围：全国主要一二线城市</p>
+                    <p>优势：原厂配件库直供，星级工程师团队</p>
+                    <span class="price-tag">年度维保 ￥3,800/台起</span>
+                </div>
+                <div class="item-card">
+                    <h3>安心电梯维保集团</h3>
+                    <p>服务范围：华东、华南地区</p>
+                    <p>优势：全生命周期维保管理系统</p>
+                    <span class="price-tag">月度维保 ￥450/台起</span>
+                </div>
+            </div>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>维保类型</th>
+                        <th>服务内容</th>
+                        <th>参考报价</th>
+                        <th>响应时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>月度维保</td>
+                        <td>半月巡检1次 + 季度深度保养</td>
+                        <td>￥450 元/台/月起</td>
+                        <td>45分钟内到达</td>
+                    </tr>
+                    <tr>
+                        <td>季度维保</td>
+                        <td>月度巡检1次 + 季度全面保养</td>
+                        <td>￥1,200 元/台/季度起</td>
+                        <td>30分钟内到达</td>
+                    </tr>
+                    <tr>
+                        <td>年度全包</td>
+                        <td>月度巡检 + 季度保养 + 部件更换（不含大件）</td>
+                        <td>￥3,800 元/台/年起</td>
+                        <td>15分钟内到达</td>
+                    </tr>
+                    <tr>
+                        <td>定制化维保</td>
+                        <td>根据客户需求定制服务方案</td>
+                        <td>面议</td>
+                        <td>7×24小时</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 四楼：电梯配件 -->
+        <section class="floor-section" id="floor4">
+            <div class="floor-badge">4 楼</div>
+            <h2 class="floor-title">电梯配件中心 <span>（正品原厂/品牌齐全）</span></h2>
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>品牌</th>
+                        <th>配件名称</th>
+                        <th>规格型号</th>
+                        <th>参考价格</th>
+                        <th>保修期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>三菱电梯</td>
+                        <td>门机控制器</td>
+                        <td>KM775287G01</td>
+                        <td>￥2,800 元</td>
+                        <td>1年</td>
+                    </tr>
+                    <tr>
+                        <td>日立电梯</td>
+                        <td>变频器主板</td>
+                        <td>L100-002</td>
+                        <td>￥5,600 元</td>
+                        <td>1年</td>
+                    </tr>
+                    <tr>
+                        <td>奥的斯</td>
+                        <td>轿门光幕</td>
+                        <td>OH-B15</td>
+                        <td>￥1,850 元</td>
+                        <td>6个月</td>
+                    </tr>
+                    <tr>
+                        <td>通力电梯</td>
+                        <td>层门门锁</td>
+                        <td>KDL-16-L</td>
+                        <td>￥680 元</td>
+                        <td>1年</td>
+                    </tr>
+                    <tr>
+                        <td>迅达电梯</td>
+                        <td>安全回路板</td>
+                        <td>MCDC 223</td>
+                        <td>￥3,200 元</td>
+                        <td>1年</td>
+                    </tr>
+                    <tr>
+                        <td>西子电梯</td>
+                        <td>主机抱闸制动器</td>
+                        <td>XZ-DZ02</td>
+                        <td>￥1,450 元</td>
+                        <td>1年</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; color: #1a2a3a; font-size: 18px;">常用易损件现货直发</h3>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h4>🔧 门锁装置</h4>
+                    <p>适用于奥的斯、三菱、日立等主流品牌门机系统</p>
+                    <span class="price-tag">￥320 - ￥1,200</span>
+                </div>
+                <div class="item-card">
+                    <h4>⚡ 接触器/继电器</h4>
+                    <p>施耐德、ABB原装，用于主回路控制</p>
+                    <span class="price-tag">￥85 - ￥680</span>
+                </div>
+                <div class="item-card">
+                    <h4>🛞 导向轮/反绳轮</h4>
+                    <p>高强度合金材质，含轴承，静音设计</p>
+                    <span class="price-tag">￥260 - ￥890</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 五楼：电梯改造 -->
+        <section class="floor-section" id="floor5">
+            <div class="floor-badge">5 楼</div>
+            <h2 class="floor-title">电梯改造方案与案例 <span>（安全升级/智能化改造）</span></h2>
+
+            <h3 style="margin-bottom: 15px; color: #1a2a3a;">典型改造方案</h3>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h4>🏢 老旧电梯安全升级改造</h4>
+                    <p>原有机房电梯加装空调、更换钢丝绳、更新门锁系统</p>
+                    <p>工期：7-15天</p>
+                    <span class="price-tag">￥2.5万 - ￥5万</span>
+                </div>
+                <div class="item-card">
+                    <h4>🏠 老旧小区电梯加装</h4>
+                    <p>钢结构井道、无机房客梯、并联群控</p>
+                    <p>工期：45-60天</p>
+                    <span class="price-tag">￥35万 - ￥80万/台</span>
+                </div>
+                <div class="item-card">
+                    <h4>🧠 智能化升级改造</h4>
+                    <p>加装IC卡系统、人脸识别、手机召唤、能耗监测</p>
+                    <p>工期：3-7天</p>
+                    <span class="price-tag">￥1.8万 - ￥4万</span>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; color: #1a2a3a; font-size: 18px;">典型案例展示</h3>
+            <div class="case-card">
+                <h4>案例一：XX小区12台老旧电梯安全升级</h4>
+                <p>改造内容：更换门机系统、加装电梯物联网监控装置、更换曳引机</p>
+                <p>工程周期：90天 | 项目金额：280万元 | 客户满意度：★★★★★</p>
+            </div>
+            <div class="case-card">
+                <h4>案例二：YY产业园4台无机房客梯智能化改造</h4>
+                <p>改造内容：加装人脸识别、手机APP召唤、能耗监测系统</p>
+                <p>工程周期：30天 | 项目金额：45万元 | 客户满意度：★★★★☆</p>
+            </div>
+            <div class="case-card">
+                <h4>案例三：ZZ大厦观光梯井道加固及装饰改造</h4>
+                <p>改造内容：井道钢结构加固、轿厢内饰升级、更换外护板</p>
+                <p>工程周期：45天 | 项目金额：68万元 | 客户满意度：★★★★★</p>
+            </div>
+        </section>
+
+        <!-- 六楼：电梯拆梯及回收 -->
+        <section class="floor-section" id="floor6">
+            <div class="floor-badge">6 楼</div>
+            <h2 class="floor-title">电梯拆梯及回收服务 <span>（专业团队/环保处置）</span></h2>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h3>华东拆梯专业队</h3>
+                    <p>服务区域：沪苏浙皖</p>
+                    <p>资质：特种设备拆除A级</p>
+                    <p>优势：高空吊运、废料清运一条龙</p>
+                </div>
+                <div class="item-card">
+                    <h3>北方拆梯回收公司</h3>
+                    <p>服务区域：京津冀晋鲁</p>
+                    <p>资质：再生资源回收资质</p>
+                    <p>优势：正规环保处置、全程录像记录</p>
+                </div>
+                <div class="item-card">
+                    <h3>华南废旧金属回收团队</h3>
+                    <p>服务区域：粤闽琼湘赣</p>
+                    <p>资质：废旧金属回收资质</p>
+                    <p>优势：当场称重结算、价格公开透明</p>
+                </div>
+            </div>
+
+            <table class="price-table">
+                <thead>
+                    <tr>
+                        <th>电梯类型</th>
+                        <th>层站配置</th>
+                        <th>拆梯参考价格</th>
+                        <th>回收参考价格</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>有机房客梯</td>
+                        <td>9层/9站/9门</td>
+                        <td>￥1,500 - ￥2,500/台</td>
+                        <td>主机回收 ￥800-1500/台</td>
+                    </tr>
+                    <tr>
+                        <td>无机房客梯</td>
+                        <td>11层/11站/11门</td>
+                        <td>￥2,000 - ￥3,500/台</td>
+                        <td>主机回收 ￥1500-2500/台</td>
+                    </tr>
+                    <tr>
+                        <td>观光电梯</td>
+                        <td>6层/6站/6门</td>
+                        <td>￥2,500 - ￥4,000/台</td>
+                        <td>导轨、轿厢 ￥3000-5000/吨</td>
+                    </tr>
+                    <tr>
+                        <td>自动扶梯</td>
+                        <td>梯级宽1000mm</td>
+                        <td>￥3,000 - ￥5,000/台</td>
+                        <td>主机、梯级 ￥4000-6000/吨</td>
+                    </tr>
+                    <tr>
+                        <td>货梯</td>
+                        <td>3吨/3层</td>
+                        <td>￥1,800 - ￥3,000/台</td>
+                        <td>主机、对重 ￥2000-3500/吨</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 七楼：二手配件 -->
+        <section class="floor-section" id="floor7">
+            <div class="floor-badge">7 楼</div>
+            <h2 class="floor-title">二手配件交易中心 <span>（质量把控/性价比高）</span></h2>
+            <div class="grid-3">
+                <div class="item-card">
+                    <h3>🔧 二手电梯门机系统</h3>
+                    <p>品牌：三菱、奥的斯</p>
+                    <p>成色：8成新以上</p>
+                    <p>说明：经过专业检测，功能完好</p>
+                    <span class="price-tag">￥800 - ￥2,500</span>
+                </div>
+                <div class="item-card">
+                    <h3>⚡ 二手变频器/主板</h3>
+                    <p>品牌：三菱、日立</p>
+                    <p>成色：9成新</p>
+                    <p>说明：原厂拆机件，质保3个月</p>
+                    <span class="price-tag">￥1,200 - ￥4,500</span>
+                </div>
+                <div class="item-card">
+                    <h3>🛞 二手曳引机</h3>
+                    <p>品牌：西子、康力</p>
+                    <p>成色：7成新</p>
+                    <p>说明：可提供安装及调试服务</p>
+                    <span class="price-tag">￥3,000 - ￥8,000</span>
+                </div>
+                <div class="item-card">
+                    <h3>🔩 二手导轨及配件</h4>
+                    <p>品牌：国产通用</p>
+                    <p>成色：6-9成新</p>
+                    <p>说明：现场测量匹配，支持定制</p>
+                    <span class="price-tag">￥80 - ￥320/米</span>
+                </div>
+                <div class="item-card">
+                    <h3>📡 二手电梯IC卡控制系统</h3>
+                    <p>品牌：广日、巨立</p>
+                    <p>成色：9成新</p>
+                    <p>说明：功能齐全，含安装调试</p>
+                    <span class="price-tag">￥600 - ￥1,800</span>
+                </div>
+                <div class="item-card">
+                    <h3>🔒 二手门锁及安全回路</h3>
+                    <p>品牌：通用型</p>
+                    <p>成色：8成新</p>
+                    <p>说明：出厂检测合格，质保半年</p>
+                    <span class="price-tag">￥150 - ￥680</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 八楼：维保人交流心得 -->
+        <section class="floor-section" id="floor8">
+            <div class="floor-badge">8 楼</div>
+            <h2 class="floor-title">维保人交流社区 <span>（技术探讨/经验分享/行业吐槽）</span></h2>
+
+            <div class="forum-post">
+                <div class="forum-tag">技术探讨</div>
+                <div class="forum-tag">故障排查</div>
+                <h4>三菱GPS-III型电梯频繁报"门锁回路故障"排查心得</h4>
+                <p>近期遇到多台三菱GPS-III型电梯频繁报"门锁回路故障"代码，经过排查，90%以上都是厅门门锁触点氧化导致。建议维保同行在每半月保养时重点检查门锁触点，使用电子触点清洁剂处理，可大幅降低故障率。记录：共处理8台，有效解决6台。</p>
+                <div class="forum-meta">👤 维修组长-李工 | 2026-03-15 | 北京 | 👍 128 | 💬 36</div>
+            </div>
+
+            <div class="forum-post">
+                <div class="forum-tag">行业吐槽</div>
+                <div class="forum-tag">维保经验</div>
+                <h4>某小区物业要求"电梯零故障"却不给合理维保时长</h4>
+                <p>遇到一个奇葩小区，物业要求电梯全年零故障，但给我们的维保时长只有每月4小时。电梯运行8年以上，这么点时间连基本检测都不够，更别说深度保养了。各位同行有没有遇到过类似情况？都是怎么处理的？</p>
+                <div class="forum-meta">👤 资深维保员-王师傅 | 2026-03-12 | 上海 | 👍 245 | 💬 89</div>
+            </div>
+
+            <div class="forum-post">
+                <div class="forum-tag">技术探讨</div>
+                <div class="forum-tag">PLC控制</div>
+                <h4>奥的斯Gen2无机房电梯变频器过压故障处理</h4>
+                <p>奥的斯Gen2无机房电梯在顶层或底层频繁报"变频器过压"故障，原因多为制动电阻阻值变化或线路接触不良。建议：1)测量制动电阻阻值，与标准值比对；2)检查制动单元至电阻线路；3)调整减速时间。实际案例中，更换制动电阻后故障消除率达95%。</p>
+                <div class="forum-meta">👤 电气工程师-张工 | 2026-03-08 | 广州 | 👍 76 | 💬 23</div>
+            </div>
+
+            <div class="forum-post">
+                <div class="forum-tag">配件交流</div>
+                <div class="forum-tag">东芝电梯</div>
+                <h4>东芝CV630门机变频器代换方案</h4>
+                <p>CV630原装门机变频器价格高且购买周期长，经过多次试验，发现安川V1000系列可以直接代用，参数设置稍有不同。需要调整减速时间和S曲线曲线。有需要参数表的可以私信。</p>
+                <div class="forum-meta">👤 技术达人-小陈 | 2026-03-01 | 深圳 | 👍 92 | 💬 41</div>
+            </div>
+
+            <div class="forum-post">
+                <div class="forum-tag">经验分享</div>
+                <div class="forum-tag">收取钢丝绳</div>
+                <h4>分享一个电梯钢丝绳张力不均的调整方法</h4>
+                <p>电梯使用5-8年后，钢丝绳张力不均是个常见问题。调整方法：1)将轿厢停至顶层并固定；2)使用张力检测仪测量每根绳张力；3)通过调节绳头弹簧螺母调整；4)单根绳张力差不超过5%。这个方法比传统的"听声"法更精准。</p>
+                <div class="forum-meta">👤 老法师-刘师傅 | 2026-02-25 | 成都 | 👍 156 | 💬 67</div>
+            </div>
+
+            <div class="forum-post">
+                <div class="forum-tag">行业新闻</div>
+                <h4>电梯新版检规7月1日起实施，这些变化要注意</h4>
+                <p>新版电梯检规要点：1)明确电梯数据采集要求；2)增加物联网系统抽检项目；3)细化应急救援演练要求。建议各维保单位提前准备，避免新规实施后验收不通过。需要详情的可联系我索取资料。</p>
+                <div class="forum-meta">👤 监管达人-赵工 | 2026-02-20 | 南京 | 👍 312 | 💬 134</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2026 AI智能电梯服务 全产业链数字化一站式平台. 保留所有权利。</p>
+        <p style="margin-top: 5px; font-size: 12px; color: #666;">
+            服务承诺：正品保障 · 透明报价 · 24小时在线客服 · 全国联保
+        </p>
+    </footer>
+
+</body>
+</html>
