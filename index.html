@@ -465,7 +465,336 @@
           font-size: 14px;                                                          
           margin-top: 5px;                                                          
       }                                                                             
-  </style>                                                                          
+      /* 登录注册按钮 */
+      .auth-btn {
+          background: linear-gradient(135deg, #38bdf8 0%, #007aff 100%);
+          color: white;
+          border: none;
+          padding: 8px 20px;
+          border-radius: 20px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-weight: bold;
+          white-space: nowrap;
+      }
+      .auth-btn:hover {
+          box-shadow: 0 0 15px rgba(56,189,248,0.5);
+          transform: scale(1.05);
+      }
+      .user-display {
+          color: #38bdf8;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+      }
+      .logout-link {
+          color: #ff3b30;
+          text-decoration: none;
+          font-size: 13px;
+      }
+      .logout-link:hover {
+          text-decoration: underline;
+      }
+
+      /* 登录注册弹窗遮罩 */
+      .auth-modal-overlay {
+          display: none;
+          position: fixed;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          background-color: rgba(0,0,0,0.6);
+          z-index: 2000;
+          justify-content: center;
+          align-items: center;
+          backdrop-filter: blur(3px);
+      }
+      .auth-modal-overlay.show {
+          display: flex;
+          animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+      }
+      .auth-modal {
+          background-color: #fff;
+          border-radius: 16px;
+          width: 440px;
+          max-width: 95vw;
+          max-height: 90vh;
+          overflow-y: auto;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+          animation: slideUp 0.3s ease;
+          position: relative;
+      }
+      @keyframes slideUp {
+          from { transform: translateY(30px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+      }
+      .auth-modal-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 25px 0;
+      }
+      .auth-modal-header h3 {
+          font-size: 20px;
+          color: #1a2a3a;
+          margin: 0;
+      }
+      .auth-close-btn {
+          background: none;
+          border: none;
+          font-size: 24px;
+          color: #888;
+          cursor: pointer;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s;
+      }
+      .auth-close-btn:hover {
+          background-color: #f1f5f9;
+          color: #333;
+      }
+
+      /* Tab 切换 */
+      .auth-tabs {
+          display: flex;
+          border-bottom: 2px solid #e2e8f0;
+          margin: 15px 25px 0;
+          gap: 0;
+      }
+      .auth-tab {
+          flex: 1;
+          padding: 12px 8px;
+          text-align: center;
+          background: none;
+          border: none;
+          border-bottom: 3px solid transparent;
+          font-size: 15px;
+          cursor: pointer;
+          color: #666;
+          transition: all 0.3s;
+          font-weight: bold;
+          position: relative;
+      }
+      .auth-tab.active {
+          color: #007aff;
+          border-bottom-color: #007aff;
+      }
+      .auth-tab:hover {
+          color: #007aff;
+      }
+
+      /* Tab 内容区 */
+      .auth-tab-content {
+          display: none;
+          padding: 20px 25px;
+      }
+      .auth-tab-content.active {
+          display: block;
+          animation: fadeIn 0.3s ease;
+      }
+
+      /* 表单样式 */
+      .auth-form-group {
+          margin-bottom: 15px;
+      }
+      .auth-form-group label {
+          display: block;
+          margin-bottom: 6px;
+          font-weight: bold;
+          color: #1a2a3a;
+          font-size: 14px;
+      }
+      .auth-form-group input {
+          width: 100%;
+          padding: 11px 14px;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 14px;
+          transition: all 0.2s;
+          font-family: inherit;
+      }
+      .auth-form-group input:focus {
+          outline: none;
+          border-color: #007aff;
+          box-shadow: 0 0 0 3px rgba(0,122,255,0.1);
+      }
+      .auth-field-with-code {
+          display: flex;
+          gap: 10px;
+      }
+      .auth-field-with-code input {
+          flex: 1;
+      }
+      .send-code-btn {
+          padding: 10px 14px;
+          background: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 13px;
+          white-space: nowrap;
+          color: #007aff;
+          font-weight: bold;
+          transition: all 0.2s;
+          min-width: 120px;
+      }
+      .send-code-btn:hover {
+          background-color: #e0f2fe;
+          border-color: #007aff;
+      }
+      .send-code-btn.disabled {
+          color: #888;
+          cursor: not-allowed;
+          background-color: #f8fafc;
+      }
+      .auth-tip {
+          font-size: 12px;
+          color: #888;
+          margin-bottom: 15px;
+          line-height: 1.5;
+      }
+      .auth-divider {
+          text-align: center;
+          padding: 12px 0;
+          position: relative;
+      }
+      .auth-divider hr {
+          border: none;
+          border-top: 1px solid #e2e8f0;
+          margin: 0;
+      }
+      .auth-divider span {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: #fff;
+          padding: 0 12px;
+          color: #888;
+          font-size: 13px;
+      }
+
+      /* 微信扫码区域 */
+      .wechat-qr-area {
+          text-align: center;
+          padding: 20px 0;
+      }
+      .wechat-qr-placeholder {
+          width: 180px;
+          height: 180px;
+          margin: 0 auto 15px;
+          background: conic-gradient(from 0deg, #07c160, #06ad56, #07c160);
+          border-radius: 12px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(7,193,96,0.15);
+      }
+      .wechat-qr-placeholder::after {
+          content: "微信扫码";
+          color: white;
+          font-size: 14px;
+          font-weight: bold;
+          letter-spacing: 3px;
+      }
+      .wechat-qr-placeholder::before {
+          content: "";
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          background: white;
+          border-radius: 6px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+      }
+      .wechat-hint {
+          font-size: 13px;
+          color: #666;
+      }
+
+      /* 协议勾选 */
+      .auth-agreement {
+          display: flex;
+          align-items: flex-start;
+          gap: 8px;
+          margin-bottom: 15px;
+          font-size: 13px;
+          color: #666;
+      }
+      .auth-agreement input[type="checkbox"] {
+          margin-top: 2px;
+          cursor: pointer;
+      }
+      .auth-agreement a {
+          color: #007aff;
+          text-decoration: none;
+      }
+      .auth-agreement a:hover {
+          text-decoration: underline;
+      }
+
+      /* 提交按钮 */
+      .auth-submit-btn {
+          width: 100%;
+          padding: 13px;
+          background: linear-gradient(135deg, #007aff 0%, #0056b3 100%);
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.3s;
+      }
+      .auth-submit-btn:hover {
+          box-shadow: 0 5px 15px rgba(0,122,255,0.4);
+          transform: translateY(-1px);
+      }
+      .auth-submit-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+      }
+
+      /* Toast 提示 */
+      .auth-toast {
+          position: fixed;
+          top: 80px;
+          left: 50%;
+          transform: translateX(-50%) translateY(-20px);
+          background-color: #333;
+          color: #fff;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-size: 14px;
+          z-index: 3000;
+          opacity: 0;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+          pointer-events: none;
+          white-space: nowrap;
+      }
+      .auth-toast.show {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+      }
+      .auth-toast.success {
+          background-color: #22c55e;
+      }
+      .auth-toast.error {
+          background-color: #ef4444;
+      }
+<                                                                          
   </head>                                                                           
   <body>                                                                            
                                                                                     
@@ -473,7 +802,11 @@
   <header>                                                                          
       <div class="nav-container">                                                   
           <div class="logo">🛗 AI智能电梯服务</div>                                 
-          <div class="nav-info">全国电梯产业链数字化综合服务平台</div>              
+          <button id="loginBtn" class="auth-btn">登录 / 注册</button>
+          <div id="userDisplay" class="user-display" style="display:none;">
+              <span id="userWelcome"></span>
+              <a href="#" class="logout-link" onclick="logout(event)">[退出]</a>
+          </div>              
       </div>                                                                        
   </header>                                                                         
                                                                                     
@@ -1282,18 +1615,234 @@
           event.target.reset();                                                     
       }                                                                             
                                                                                     
-      // 页面加载时默认激活0楼按钮                                                  
-      window.addEventListener('load', function() {                                  
-          setTimeout(() => {                                                        
-              const firstBtn =                                                      
-  document.querySelector('.elevator-btn[data-floor="0"]');                          
-              if (firstBtn) {                                                       
-                  firstBtn.classList.add('active');                                 
-              }                                                                     
-          }, 500);                                                                  
-      });                                                                           
-  </script>                                                                         
-  </body>                                                                           
+      // 页面加载时默认激活0楼按钮
+      window.addEventListener('load', function() {
+          setTimeout(() => {
+              const firstBtn =
+  document.querySelector('.elevator-btn[data-floor="0"]');
+              if (firstBtn) {
+                  firstBtn.classList.add('active');
+              }
+          }, 500);
+      });
+
+      // ========== 登录注册模块 ==========
+      const authModal = document.getElementById('authModal');
+      const loginBtn = document.getElementById('loginBtn');
+      let currentUser = JSON.parse(localStorage.getItem('dtweb_user')) || null;
+
+      // 初始化用户状态
+      function initAuthState() {
+          if (currentUser) {
+              loginBtn.style.display = 'none';
+              document.getElementById('userDisplay').style.display = 'flex';
+              document.getElementById('userWelcome').textContent = '👤 ' + currentUser.name;
+          } else {
+              loginBtn.style.display = 'block';
+              document.getElementById('userDisplay').style.display = 'none';
+          }
+      }
+
+      // 打开弹窗
+      loginBtn.addEventListener('click', openAuthModal);
+
+      function openAuthModal() {
+          authModal.classList.add('show');
+          document.body.style.overflow = 'hidden';
+      }
+
+      function closeAuthModal() {
+          authModal.classList.remove('show');
+          document.body.style.overflow = '';
+      }
+
+      // 点击遮罩关闭
+      authModal.addEventListener('click', function(e) {
+          if (e.target === authModal) {
+              closeAuthModal();
+          }
+      });
+
+      // ESC 关闭
+      document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') closeAuthModal();
+      });
+
+      // Tab 切换
+      function switchTab(tabId) {
+          // 更新tab按钮状态
+          document.querySelectorAll('.auth-tab').forEach(tab => {
+              tab.classList.toggle('active', tab.getAttribute('data-tab') === tabId);
+          });
+          // 更新内容区
+          document.querySelectorAll('.auth-tab-content').forEach(content => {
+              content.classList.toggle('active', content.id === 'tab-' + tabId);
+          });
+      }
+
+      // Toast 提示
+      function showToast(message, type) {
+          const toast = document.getElementById('authToast');
+          toast.textContent = message;
+          toast.className = 'auth-toast ' + (type || '') + ' show';
+          setTimeout(() => {
+              toast.classList.remove('show');
+          }, 2500);
+      }
+
+      // 发送验证码（模拟）
+      function sendCode(type) {
+          let btnId, inputId, label;
+          if (type === 'phone') {
+              btnId = 'sendPhoneCodeBtn';
+              inputId = 'phoneInput';
+              label = '手机号';
+          } else {
+              btnId = 'sendEmailCodeBtn';
+              inputId = 'emailInput';
+              label = '邮箱';
+          }
+
+          const input = document.getElementById(inputId);
+          const btn = document.getElementById(btnId);
+
+          if (!input.value.trim()) {
+              showToast('请先输入' + label, 'error');
+              input.focus();
+              return;
+          }
+
+          if (type === 'phone') {
+              if (!/^1[3-9]\d{9}$/.test(input.value.trim())) {
+                  showToast('请输入正确的11位手机号', 'error');
+                  input.focus();
+                  return;
+              }
+          } else {
+              if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())) {
+                  showToast('请输入正确的邮箱地址', 'error');
+                  input.focus();
+                  return;
+              }
+          }
+
+          // 检查协议
+          const agreeId = type === 'phone' ? 'phoneAgree' : 'emailAgree';
+          if (!document.getElementById(agreeId).checked) {
+              showToast('请先阅读并同意用户协议', 'error');
+              return;
+          }
+
+          // 模拟发送验证码
+          let countdown = 60;
+          btn.classList.add('disabled');
+          btn.textContent = countdown + '秒后重发';
+          btn.disabled = true;
+
+          showToast('验证码已发送（演示用：请使用 123456）', 'success');
+
+          const timer = setInterval(() => {
+              countdown--;
+              if (countdown <= 0) {
+                  clearInterval(timer);
+                  btn.classList.remove('disabled');
+                  btn.textContent = '获取验证码';
+                  btn.disabled = false;
+              } else {
+                  btn.textContent = countdown + '秒后重发';
+              }
+          }, 1000);
+      }
+
+      // 手机号登录/注册提交
+      function handlePhoneSubmit(event) {
+          event.preventDefault();
+          const phone = document.getElementById('phoneInput').value.trim();
+          const code = document.getElementById('phoneCode').value.trim();
+          const password = document.getElementById('phonePassword').value;
+
+          if (!/^1[3-9]\d{9}$/.test(phone)) {
+              showToast('请输入正确的11位手机号', 'error');
+              return;
+          }
+          if (code !== '123456') {
+              showToast('验证码错误，演示用验证码：123456', 'error');
+              return;
+          }
+          if (password && (password.length < 6 || password.length > 20)) {
+              showToast('密码长度需为6-20位', 'error');
+              return;
+          }
+          if (!document.getElementById('phoneAgree').checked) {
+              showToast('请先阅读并同意用户协议', 'error');
+              return;
+          }
+
+          login('phone_' + phone.slice(-4), '手机用户 ' + phone.slice(0, 3) + '****' + phone.slice(-4));
+      }
+
+      // 邮箱登录/注册提交
+      function handleEmailSubmit(event) {
+          event.preventDefault();
+          const email = document.getElementById('emailInput').value.trim();
+          const code = document.getElementById('emailCode').value.trim();
+          const password = document.getElementById('emailPassword').value;
+
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+              showToast('请输入正确的邮箱地址', 'error');
+              return;
+          }
+          if (code !== '123456') {
+              showToast('验证码错误，演示用验证码：123456', 'error');
+              return;
+          }
+          if (!document.getElementById('emailAgree').checked) {
+              showToast('请先阅读并同意用户协议', 'error');
+              return;
+          }
+
+          const nickname = document.getElementById('emailNickname').value.trim();
+          const displayName = nickname || ('邮箱用户 ' + email.split('@')[0]);
+          login('email_' + email.split('@')[0], displayName);
+      }
+
+      // 微信扫码模拟
+      function handleWechatScan() {
+          const randomSuffix = Math.random().toString(36).substring(2, 8);
+          login('wechat_' + randomSuffix, '微信用户 ' + randomSuffix);
+      }
+
+      // 登录处理
+      function login(userId, userName) {
+          currentUser = { id: userId, name: userName, loginTime: new Date().toISOString() };
+          localStorage.setItem('dtweb_user', JSON.stringify(currentUser));
+          initAuthState();
+          closeAuthModal();
+          showToast('登录成功！欢迎 ' + userName, 'success');
+
+          // 清空表单
+          document.getElementById('phoneForm').reset();
+          document.getElementById('emailForm').reset();
+          switchTab('phone');
+      }
+
+      // 退出登录
+      function logout(event) {
+          if (event) event.preventDefault();
+          if (confirm('确定要退出登录吗？')) {
+              currentUser = null;
+              localStorage.removeItem('dtweb_user');
+              initAuthState();
+              showToast('已退出登录', 'success');
+          }
+      }
+
+      // 初始化
+      initAuthState();
+  </script>
+
+  </body>
+  </html>                                                                           
   </html>                                                                           
   </parameter>                                                                      
   </function>                                                                       
