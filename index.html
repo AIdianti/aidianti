@@ -124,7 +124,7 @@
           .top-elevator-btn:hover { color: #00d2ff; border-color: #00d2ff; box-shadow: 0 0 8px #00d2ff; }
           .top-elevator-btn.active { color: #fff; border-color: #fff; background: radial-gradient(circle, #fff 0%, #aaa 100%); box-shadow: 0 0 10px #fff, 0 0 20px #38bdf8; animation: top-btn-pulse 1.2s ease-in-out infinite alternate; }
           @keyframes top-btn-pulse { from { box-shadow: 0 0 8px #fff, 0 0 16px #fff, 0 0 24px #38bdf8; } to { box-shadow: 0 0 12px #fff, 0 0 24px #fff, 0 0 35px #38bdf8; } }
-          .top-elevator-screen { background-color: #000; color: #ff3b30; font-family: monospace; font-size: 14px; padding: 5px 10px; border-radius: 6px; min-width: 64px; text-align: center; border: 2px solid #333; text-shadow: 0 0 6px #ff3b30; margin-left: 4px; }
+          .top-elevator-screen { background-color: #000; color: #ff3b30; font-family: monospace; font-size: 14px; padding: 5px 12px; border-radius: 6px; min-width: 120px; text-align: center; border: 2px solid #333; text-shadow: 0 0 6px #ff3b30; margin-right: 6px; }
 .hero { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);    
   color: white; text-align: center; padding: 80px 20px; }                           
           .hero h1 { font-size: 36px; margin-bottom: 15px; letter-spacing: 2px; }   
@@ -255,6 +255,7 @@
           <div class="nav-container">                                               
               <div class="logo">🛗 AI智能电梯服务</div>                             
                             <nav class="top-elevator-nav" id="topElevatorNav">
+                  <div class="top-elevator-screen" id="topElevatorScreen">▼ 电梯新闻</div>
                   <a href="#floor0" class="top-elevator-btn" data-floor="0">0F</a>
                   <a href="#floor1" class="top-elevator-btn" data-floor="1">1F</a>
                   <a href="#floor2" class="top-elevator-btn" data-floor="2">2F</a>
@@ -265,7 +266,6 @@
                   <a href="#floor7" class="top-elevator-btn" data-floor="7">7F</a>
                   <a href="#floor8" class="top-elevator-btn" data-floor="8">8F</a>
                   <a href="#floor9" class="top-elevator-btn" data-floor="9">9F</a>
-                  <div class="top-elevator-screen" id="topElevatorScreen">▲ 🗛</div>
               </nav>
               <button id="loginBtn" class="login-btn">登录 / 注册</button>          
               <div id="userDisplay" class="user-display" style="display:none;">     
@@ -980,6 +980,24 @@
       const elevatorScreen = document.getElementById('topElevatorScreen');
       let activeFloor = null;
 
+      // 楼层映射：数字 → 中文名称
+      const floorNames = {
+          '0': '电梯新闻',
+          '1': '新梯产品',
+          '2': '电梯安装',
+          '3': '电梯维保',
+          '4': '电梯配件',
+          '5': '电梯改造',
+          '6': '拆梯回收',
+          '7': '二手配件',
+          '8': '交流社区',
+          '9': '客户求购'
+      };
+
+      function updateScreen(floor) {
+          elevatorScreen.textContent = '▼ ' + floor + 'F  ' + (floorNames[floor] || '');
+      }
+
       elevatorButtons.forEach(btn => {
           btn.addEventListener('click', function(e) {
               e.preventDefault();
@@ -987,7 +1005,7 @@
               elevatorButtons.forEach(b => b.classList.remove('active'));
               this.classList.add('active');
               activeFloor = floor;
-              elevatorScreen.textContent = '▼ ' + floor + 'F';
+              updateScreen(floor);
               const target = document.getElementById('floor' + floor);
               if (target) {
                   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1010,7 +1028,7 @@
                       elevatorButtons.forEach(b => {
                           if (b.getAttribute('data-floor') === floorNum) {
                               b.classList.add('active');
-                              elevatorScreen.textContent = '▼ ' + floorNum + 'F';
+                              updateScreen(floorNum);
                           } else {
                               b.classList.remove('active');
                           }
@@ -1027,14 +1045,15 @@
           event.target.reset();                                                     
       }                                                                             
                                                                                     
-      window.addEventListener('load', function() {                                  
-          setTimeout(() => {                                                        
-              const firstBtn =                                                      
-  document.querySelector('.top-elevator-btn[data-floor="0"]');                          
-              if (firstBtn) {                                                       
-                  firstBtn.classList.add('active');                                 
-              }                                                                     
-          }, 500);                                                                  
+      window.addEventListener('load', function() {
+          setTimeout(() => {
+              const firstBtn =
+  document.querySelector('.top-elevator-btn[data-floor="0"]');
+              if (firstBtn) {
+                  firstBtn.classList.add('active');
+                  updateScreen('0');
+              }
+          }, 500);
       });                                                                           
                                                                                     
       // ========== 登录注册模块 ==========                                         
